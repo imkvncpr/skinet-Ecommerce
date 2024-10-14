@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using System.Reflection.Metadata.Ecma335;
 using Core.Interfaces;
 
 namespace Core.Specification;
@@ -16,6 +17,22 @@ public class BaseSpecification<T>(Expression<Func<T, bool>>? criteria) : ISpecif
 
     public bool IsDistinct {get; private set;}
 
+    public int Take {get; private set;}
+
+    public int Skip {get; private set;}
+
+    public bool IspagingEnabled {get; private set;}
+
+    public IQueryable<T> ApplyCriteria(IQueryable<T> query)
+    {
+       if (Criteria != null)
+       {
+            query = query.Where(Criteria);   
+       }
+       return query;
+    }
+        
+
     protected void AddOrderBy(Expression<Func<T, object>> orderByExpression)
     {
         Orderby = orderByExpression;
@@ -28,6 +45,13 @@ public class BaseSpecification<T>(Expression<Func<T, bool>>? criteria) : ISpecif
     protected void ApplyDistinct()
     {
         IsDistinct = true;                  
+    }
+
+    protected void ApplyPaging(int take, int skip)
+    {
+        Take = take;
+        Skip = skip;
+        IspagingEnabled = true;
     }
 }
 
