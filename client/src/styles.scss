@@ -1,5 +1,20 @@
+@use '@angular/material' as mat;
+
+@import 'bootstrap/scss/bootstrap';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+
+$customTheme: mat.define-theme();
+
+@include mat.core();
+
+.custom-theme{
+    @include mat.all-component-themes($customTheme);
+
+    .mdc-button, .mdc-raised-buttton, .mdc-stroked-button, .mdc-flat-button{
+        @apply rounded-md max-w-screen-2xl
+    }
+}
+    
