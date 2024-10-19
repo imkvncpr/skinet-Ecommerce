@@ -29,13 +29,17 @@ export class ShopService {
     }
 
     if(shopParams.search){
-        params = params.append('search', shopParams.search)
+        params = params.append('search', shopParams.search )
     }
 
     params = params.append('pageSize', shopParams.pageSize)
     params = params.append('pageIndex', shopParams.pageNumber)
 
-    return this.http.get<Pagination<Product>>(this.baseurl + 'products', {params})
+    return this.http.get<Pagination<Product>>(this.baseurl + 'products/', {params})
+  }
+
+  getProduct(id: number){
+    return this.http.get<Product>(this.baseurl + 'products/' + id);
   }
 
   getBrands(){
