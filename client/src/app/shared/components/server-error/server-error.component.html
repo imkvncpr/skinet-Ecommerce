@@ -1,0 +1,15 @@
+<div class="container mt-5 p-4 bg-gray-100 rounded shadow-lg">   
+    <h1 class="texet-2xl font-semibold mb-4">Internal Server</h1>
+    @if (error) {
+        <h5 class="text-red-600">Error: {{error.message}}</h5>
+        <p class="font-bold mb-2">Strictly A Server Error</p>
+        <p class="mb-2">Next Steps</p>
+        <ol class="list-decimal ml-5 mb-4">
+            <li>Inspect network in dev tools</li>
+            <li>Reproduce error using postman</li>
+        </ol>
+        <h5 class="text-lg font-semibold mb-2">Stack Trace</h5>
+        <mat-card class="p-4 bg-white"></mat-card>
+            <code class="block whitespace-pre-wrap">{{error.details}}</code>
+    }
+</div>

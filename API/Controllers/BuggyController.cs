@@ -19,9 +19,9 @@ public class BuggyController : BaseApiController
     }
    
     [HttpGet("notfound")]
-    public IActionResult GetNot() 
+    public IActionResult GetNotFound() 
     {
-        return Unauthorized();
+        return NotFound();
     }
    
     [HttpGet("internalerror")]
