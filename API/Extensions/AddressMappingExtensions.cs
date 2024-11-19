@@ -7,7 +7,7 @@ public static class AddressMappingExtensions
 {
 public static AddressDTO? ToDto(this Address? address)
 {
-    if (address == null) return null;
+    if (address == null) throw new ArgumentNullException(nameof(address));
 
     return new AddressDTO
     {
